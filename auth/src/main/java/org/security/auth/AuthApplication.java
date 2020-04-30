@@ -10,7 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @EnableConfigurationProperties(RsaKeyProperties.class)
 @MapperScan("org.security.auth.repository") //"org.security.common.*",
-@ComponentScan(basePackages= {"org.security.auth.*"})
+@ComponentScan(basePackages= {"org.security.common.*","org.security.auth.*"})
 public class AuthApplication {
 
     public static void main(String[] args) {
