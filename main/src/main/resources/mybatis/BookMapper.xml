@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.security.main.repository.BookMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.security.main.entity.Book">
+    <result column="id" property="id" />
+    <result column="create_time" property="createTime" />
+    <result column="del_fag" property="delFag" />
+    <result column="update_time" property="updateTime" />
+        <result column="book_name" property="bookName" />
+        <result column="category_id" property="categoryId" />
+        <result column="comments" property="comments" />
+        <result column="directions" property="directions" />
+        <result column="is_examine" property="isExamine" />
+        <result column="is_share" property="isShare" />
+        <result column="original_price" property="originalPrice" />
+        <result column="price" property="price" />
+        <result column="qq" property="qq" />
+        <result column="reading_times" property="readingTimes" />
+        <result column="screenshot" property="screenshot" />
+        <result column="status" property="status" />
+        <result column="stock" property="stock" />
+        <result column="user_id" property="userId" />
+        <result column="wechat" property="wechat" />
+    </resultMap>
+
+</mapper>

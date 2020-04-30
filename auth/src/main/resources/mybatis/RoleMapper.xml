@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.security.auth.repository.RoleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.security.auth.entity.Role">
+    <result column="id" property="id" />
+    <result column="create_time" property="createTime" />
+    <result column="del_fag" property="delFag" />
+    <result column="update_time" property="updateTime" />
+    <result column="name" property="name" />
+       <!-- <collection property="users" ofType="org.security.auth.entity.User">
+            <result column="id" property="id" />
+            <result column="enable" property="enable" />
+            <result column="host" property="host" />
+            <result column="last_login_time" property="lastLoginTime" />
+            <result column="username" property="username" />
+            <result column="password" property="password" />
+        </collection>-->
+    </resultMap>
+
+
+    <!--<select id="findRolesByUserId" resultMap="BaseResultMap" parameterType="org.security.auth.entity.User">
+        select r.id,r.name from role r ,user_roles ur
+        where r.id = ur.roles_id and ur.user_id = #{id}
+    </select>-->
+
+    <select id="selectRoleByName" parameterType="org.security.auth.dto.AuthDto" resultMap="BaseResultMap">
+         SELECT  ID,`NAME` FROM role WHERE  name  = #{name}
+    </select>
+</mapper>

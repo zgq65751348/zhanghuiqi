@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.security.auth.repository.ResourceMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.security.auth.entity.Resource">
+    <result column="id" property="id" />
+    <result column="create_time" property="createTime" />
+    <result column="del_fag" property="delFag" />
+    <result column="update_time" property="updateTime" />
+        <result column="method_name" property="methodName" />
+        <result column="method_path" property="methodPath" />
+        <result column="remark" property="remark" />
+        <result column="resource_id" property="resourceId" />
+        <result column="resource_name" property="resourceName" />
+        <result column="resource_string" property="resourceString" />
+    </resultMap>
+
+</mapper>
