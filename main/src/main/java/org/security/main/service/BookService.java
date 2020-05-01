@@ -1,5 +1,6 @@
 package org.security.main.service;
 
+import org.security.common.exception.HttpResult;
 import org.security.main.entity.Book;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -12,5 +13,13 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2020-04-28
  */
 public interface BookService extends IService<Book> {
+
+    HttpResult releaseBookByUser(Book book);
+
+    HttpResult examineBookByAdmin(Book book);
+
+    HttpResult selectNotExamine(Book book);
+
+    HttpResult selectExamine(Book book);
 
 }

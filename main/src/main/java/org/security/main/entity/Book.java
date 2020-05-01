@@ -2,8 +2,11 @@ package org.security.main.entity;
 
 import java.math.BigDecimal;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.core.conditions.interfaces.Func;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import org.security.common.common.JsonUtils;
 import org.security.common.core.AbstractEntity;
 import java.io.Serializable;
 import lombok.Data;
@@ -22,7 +25,7 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
 @TableName(value = "book")
-public class Book extends AbstractEntity<Book> {
+public class Book extends AbstractEntity<Book>{
 
     private static final long serialVersionUID = 1L;
 
@@ -47,9 +50,9 @@ public class Book extends AbstractEntity<Book> {
     private String directions;
 
     /**
-     * 管理员审核 ：0：未通过 1：已通过
+     * 管理员审核 ：-1：未通过 1：已通过  0: 待审核
      */
-    private Boolean isExamine;
+    private Integer isExamine;
 
     /**
      * 是不是共享书籍 0：出售 1：共享
@@ -101,10 +104,24 @@ public class Book extends AbstractEntity<Book> {
      */
     private String wechat;
 
+    private String remarks;
+
+    @TableField(exist = false)
+    private Integer page;
+
+    @TableField(exist = false)
+    private Integer size;
+
 
     @Override
     protected Serializable pkVal() {
         return null;
+    }
+
+    public static void main(String[] args) {
+        Book book = new Book();
+       String json =  JsonUtils.toString(book);
+        System.out.println(json);
     }
 
 }

@@ -23,6 +23,7 @@
         <result column="stock" property="stock" />
         <result column="user_id" property="userId" />
         <result column="wechat" property="wechat" />
+        <result column="remarks" property="remarks"/>
     </resultMap>
 
 </mapper>

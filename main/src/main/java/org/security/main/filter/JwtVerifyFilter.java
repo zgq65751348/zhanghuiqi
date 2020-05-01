@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.security.common.common.JwtUtils;
 import org.security.common.domain.Payload;
 import org.security.common.exception.Code;
+import org.security.common.exception.ExceptionHandlerClass;
 import org.security.common.exception.HttpResult;
 import org.security.main.config.RsaKeyProperties;
 import org.security.auth.entity.User;
@@ -76,5 +77,21 @@ public class JwtVerifyFilter extends BasicAuthenticationFilter {
             return null;
         }
         return null;
+    }
+
+    public User getUserByAuthentication(HttpServletRequest request){
+        String token = request.getHeader("Authorization");
+        if (token != null) {
+            //通过token解析出载荷信息
+            Payload<User> payload = JwtUtils.getInfoFromToken(token.replace("x-admin ", ""),
+                    jwtRsaKeyProperties.getPublicKey(), User.class);
+            User user = payload.getUserInfo();
+            //不为null，返回
+            if (user != null) {
+                return user;
+            }
+            return null;
+        }
+        throw new ExceptionHandlerClass(Code.privilege_grant_failed);
     }
 }

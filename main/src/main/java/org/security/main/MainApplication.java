@@ -8,8 +8,8 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@MapperScan({"org.security.main.repository"}) //
-@ComponentScan(basePackages= {"org.security.common.*","org.security.main.*"})
+@MapperScan({"org.security.main.repository"}) //"org.security.common.*",
+@ComponentScan(basePackages= {"org.security.main.*"})
 @EnableConfigurationProperties(RsaKeyProperties.class)
 public class MainApplication {
 

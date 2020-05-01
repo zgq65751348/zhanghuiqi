@@ -34,6 +34,7 @@ public enum Code {
     SERVER_BUSY(550,"服务器忙"),
     TOKEN_EXPIRED(600,"授权失效"),
     DUPLICAT_DATA(601,"数据重复"),
+    NOT_FOUND_CATEGORY(602,"未找到相关类目"),
     SYS_ERROR(500, "请检查请求数据是否合法");
 
     private int code;
