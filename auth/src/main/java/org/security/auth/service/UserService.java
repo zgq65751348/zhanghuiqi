@@ -25,4 +25,8 @@ public interface UserService extends IService<User>, UserDetailsService {
     HttpResult modifyUserInfo(User user);
 
     HttpResult getUserInfo();
+
+    HttpResult enableUser(User user);
+
+    HttpResult userList(User user);
 }

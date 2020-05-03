@@ -35,6 +35,7 @@ public enum Code {
     TOKEN_EXPIRED(600,"授权失效"),
     DUPLICAT_DATA(601,"数据重复"),
     NOT_FOUND_CATEGORY(602,"未找到相关类目"),
+    USER_IS_DISABLED(603,"当前账户无法使用，请联系管理员！"),
     SYS_ERROR(500, "请检查请求数据是否合法");
 
     private int code;

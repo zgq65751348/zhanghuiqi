@@ -35,7 +35,6 @@ public class User extends AbstractEntity implements UserDetails {
 
     private static final long serialVersionUID = 1L;
 
-
     /**
      * 登录主机
      */
@@ -62,11 +61,17 @@ public class User extends AbstractEntity implements UserDetails {
 
     private int age;
 
-
-    private boolean enabled =true;
+    private Integer enable;
+    private boolean enabled ;
 
     @TableField(exist = false)
     private List<Role> roles;
+
+    @TableField(exist = false)
+    private Integer page;
+
+    @TableField(exist = false)
+    private Integer size;
 
 
     @Override

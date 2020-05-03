@@ -24,4 +24,7 @@ public interface RoleMapper extends BaseMapper<Role> {
 
     List<Role> selectRoleByName(AuthDto authDto);
 
+    @Select(value = "select name from role left join user_roles on user_roles.roles_id = role.id where user_roles.user_id = #{userId} ")
+    List<Role> rolesOfUser(String userId);
+
 }

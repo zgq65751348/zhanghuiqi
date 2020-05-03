@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * @author Administrator
  * 雅诗兰黛  熬夜不怕黑眼圈
- * @see 全局异常处理类
+ * @see全局异常处理类
  */
 
 @Slf4j
@@ -24,6 +24,7 @@ public class GlobalException {
     @ExceptionHandler(value = Exception.class)
     public HttpResult exceptionHandler(Exception e, HttpServletRequest request) {
         HttpResult httpResult = new HttpResult();
+
         if (e instanceof ExceptionHandlerClass) {
             log.error("异常状态码：{},异常信息提示：{},请求路径：{}", ((ExceptionHandlerClass) e).getCode(), e.getMessage(), request.getRequestURI());
             httpResult.setCode(((ExceptionHandlerClass) e).getCode());

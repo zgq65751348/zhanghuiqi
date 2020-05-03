@@ -44,11 +44,11 @@ public class JwtVerifyFilter extends BasicAuthenticationFilter {
             try {
                 payload = JwtUtils.getInfoFromToken(token, rsaKeyProperties.getPublicKey(), User.class);
             } catch (Exception e) {
-                response.setStatus(HttpServletResponse.SC_PAYMENT_REQUIRED);
+               /* response.setStatus(HttpServletResponse.SC_PAYMENT_REQUIRED);
                 PrintWriter out = response.getWriter();
                 out.write(new ObjectMapper().writeValueAsString(HttpResult.failed(Code.privilege_grant_failed)));
                 out.flush();
-                out.close();
+                out.close();*/
                 throw new RuntimeException("token解析失败！");
             }
             User user = payload.getUserInfo();

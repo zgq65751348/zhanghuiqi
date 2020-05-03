@@ -61,4 +61,5 @@ public abstract class AbstractEntity<U extends AbstractEntity> extends Model  im
     }
 
 
+
 }

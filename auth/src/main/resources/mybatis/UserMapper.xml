@@ -17,6 +17,7 @@
         <result column="age" property="age"/>
         <result column="sex" property="sex"/>
         <result column="address" property="address"/>
+        <result column="enable" property="enable"/>
         <collection property="roles" ofType="org.security.auth.entity.Role">
             <result column="id" property="id" />
             <result column="name" property="name" />

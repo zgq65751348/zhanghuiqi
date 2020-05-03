@@ -1,25 +1,20 @@
 package org.security.auth.filter;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import org.security.auth.config.RsaKeyProperties;
 import org.security.auth.entity.Role;
 import org.security.auth.entity.User;
-import org.security.auth.repository.UserMapper;
-import org.security.auth.utils.HostUtil;
 import org.security.common.common.JwtUtils;
 import org.security.common.exception.Code;
 import org.security.common.exception.ExceptionHandlerClass;
 import org.security.common.exception.HttpResult;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.stereotype.Component;
-
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -60,6 +55,11 @@ public class JwtTokenFilter extends UsernamePasswordAuthenticationFilter {
         }
     }
 
+    @Override
+    protected String obtainPassword(HttpServletRequest request) {
+        return super.obtainPassword(request);
+    }
+
     /**
      *  密码用户名匹配失败处理
      * @param request
@@ -70,10 +70,14 @@ public class JwtTokenFilter extends UsernamePasswordAuthenticationFilter {
      */
     @Override
     public void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
-        System.out.println("AuthenticationException   ===>"+failed.getMessage());
-        response.setContentType(ContentType);
         PrintWriter out = response.getWriter();
-        out.write(new ObjectMapper().writeValueAsString(HttpResult.failed(Code.PASSWORD_ERROR)));
+        response.setContentType(ContentType);
+        if(failed.getMessage().equals("User is disabled")){
+            out.write(new ObjectMapper().writeValueAsString( HttpResult.failed(Code.USER_IS_DISABLED)));
+        }else{
+            out.write(new ObjectMapper().writeValueAsString(HttpResult.failed(Code.PASSWORD_ERROR)));
+        }
+        System.out.println("AuthenticationException   ===>"+failed.getMessage());
         out.flush();
         out.close();
     }
