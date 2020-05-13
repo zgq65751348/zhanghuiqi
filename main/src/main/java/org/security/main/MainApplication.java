@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @MapperScan({"org.security.main.repository"}) //"org.security.common.*",
-@ComponentScan(basePackages= {"org.security.main.*"})
+@ComponentScan(basePackages= {"org.security.common.*","org.security.main.*"})
 @EnableConfigurationProperties(RsaKeyProperties.class)
 public class MainApplication {
 

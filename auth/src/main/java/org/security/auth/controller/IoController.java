@@ -1,6 +1,10 @@
 package org.security.auth.controller;
 
+import io.jsonwebtoken.lang.Strings;
 import lombok.extern.slf4j.Slf4j;
+import org.csource.common.MyException;
+import org.security.auth.dto.FastDFSFile;
+import org.security.auth.utils.FastDFSClient;
 import org.security.common.exception.Code;
 import org.security.common.exception.ExceptionHandlerClass;
 import org.security.common.exception.HttpResult;
@@ -24,22 +28,22 @@ import java.util.UUID;
 @Slf4j
 public class IoController {
 
+    /**
+     *  FastDFS 上传文件
+     * @param file
+     * @return
+     * @throws IOException
+     * @throws MyException
+     */
     @PostMapping("/upload")
-    public String upload(@RequestParam("file") MultipartFile file) {
-        if (file.isEmpty()) {
-            return "上传失败，请选择文件";
-        }
-        String fileName = UUID.randomUUID()+ file.getOriginalFilename();
-        String filePath = "D://images";
-        File dest = new File(filePath + fileName);
-        try {
-            file.transferTo(dest);
-            log.info("上传成功");
-            return "上传成功";
-        } catch (IOException e) {
-            log.error(e.toString(), e);
-        }
-        return "上传失败！";
+    public HttpResult upload(@RequestParam("file") MultipartFile file) throws IOException, MyException {
+        FastDFSFile fastDFSFile = new FastDFSFile(
+                file.getOriginalFilename(),file.getBytes(),
+                Strings.getFilenameExtension(file.getOriginalFilename())
+                );
+        String [] uploads = FastDFSClient.upload(fastDFSFile);
+        String url = FastDFSClient.getTracker()+"/"+uploads[0]+"/"+uploads[1];
+        return HttpResult.success(url);
     }
 
     @PostMapping("/multipart/io")
