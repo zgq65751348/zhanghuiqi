@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.commons.lang3.StringUtils;
-import org.security.auth.entity.User;
 import org.security.common.core.SnowflakeId;
 import org.security.common.exception.Code;
 import org.security.common.exception.ExceptionHandlerClass;
