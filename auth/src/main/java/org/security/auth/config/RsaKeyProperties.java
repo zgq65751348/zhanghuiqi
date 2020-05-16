@@ -14,7 +14,7 @@ import java.security.PublicKey;
 @ConfigurationProperties(prefix = "rsa.key.path")
 public class RsaKeyProperties {
 
-    private String pubKey  ;
+    private String pubKey ;
     private String priKey ;
 
     private PublicKey publicKey;
